@@ -43,4 +43,8 @@ pnpm db:studio     # GUI para inspeccionar la DB
 Estas convenciones estan detalladas en el plugin de Claude Code `eriklueh-plugin` (skills: `drizzle-sqlite`, `zustand-patterns`, `nextjs16-patterns`, `shadcn-tailwind-theming`, `project-conventions`).
 
 ## Plugin de Claude Code
-Al confiar en esta carpeta, Claude Code registra el marketplace `eriklueh-kit` y activa `eriklueh-plugin` (definido en `.claude/settings.json`), que aporta las skills del stack y los MCP de shadcn (instalar componentes) y Clerk (snippets del SDK al dia). El MCP de Clerk pide login OAuth la primera vez.
+Al confiar en esta carpeta, Claude Code (via `.claude/settings.json`) registra dos marketplaces y activa sus plugins:
+- `eriklueh-plugin@eriklueh-kit` — nuestras skills del stack + MCP de shadcn (instalar componentes) y de Clerk (snippets del SDK al dia; pide login OAuth la primera vez).
+- `core`, `frameworks`, `features` de `clerk-skills` — **skills OFICIALES de Clerk**: hacen que Claude conozca los componentes (`<SignIn/>`, `<UserButton/>`, `<OrganizationSwitcher/>`, control components, hooks) y las capacidades (orgs/RBAC, billing, webhooks, custom UI, testing). (No incluimos `mobile`.)
+
+Asi, para Clerk, Claude tiene consciencia plena de componentes/capacidades (skills oficiales) + snippets actuales (MCP). Alternativa manual: `npx skills add clerk/skills`.

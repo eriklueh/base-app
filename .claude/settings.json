@@ -5,9 +5,18 @@
         "source": "github",
         "repo": "eriklueh/eriklueh-plugin"
       }
+    },
+    "clerk-skills": {
+      "source": {
+        "source": "github",
+        "repo": "clerk/skills"
+      }
     }
   },
   "enabledPlugins": {
-    "eriklueh-plugin@eriklueh-kit": true
+    "eriklueh-plugin@eriklueh-kit": true,
+    "core@clerk-skills": true,
+    "frameworks@clerk-skills": true,
+    "features@clerk-skills": true
   }
 }
