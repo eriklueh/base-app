@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "eriklueh-kit": {
+      "source": {
+        "source": "github",
+        "repo": "eriklueh/eriklueh-plugin"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "eriklueh-plugin@eriklueh-kit": true
+  }
+}

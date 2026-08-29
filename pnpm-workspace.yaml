@@ -1,0 +1,4 @@
+# pnpm 11+ aprueba aqui los build scripts (better-sqlite3 compila un binario nativo).
+allowBuilds:
+  better-sqlite3: true
+  esbuild: true
