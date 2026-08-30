@@ -34,6 +34,20 @@ pnpm db:studio     # GUI para inspeccionar la DB
 - `lib/utils.ts` — helper `cn()`.
 - `proxy.ts` — middleware de Clerk (Next 16; en Next <=15 seria `middleware.ts`).
 
+## PWA (instalable + push)
+Sigue la guia oficial de Next.js (todo nativo, sin plugin):
+- `app/manifest.ts` — web app manifest (instalar en pantalla de inicio). Reemplaza `public/icon.svg` por PNG 192/512 (incl. maskable) para produccion.
+- `lib/service-worker.js` — service worker de push (se registra desde `components/pwa.tsx`). No cachea offline.
+- `app/actions.ts` — server actions `subscribeUser`/`unsubscribeUser`/`sendNotification` (via `web-push`), gateadas por Clerk; las suscripciones se guardan en Drizzle (`push_subscriptions`).
+- `components/pwa.tsx` — UI cliente (activar/enviar/instalar).
+
+Para probar push:
+```bash
+npx web-push generate-vapid-keys   # pega las claves en .env.local (NEXT_PUBLIC_VAPID_PUBLIC_KEY / VAPID_PRIVATE_KEY)
+pnpm dev --experimental-https      # push requiere HTTPS, incluso en local
+```
+Para **offline real** (caché con service worker) la doc de Next recomienda [Serwist](https://github.com/serwist/serwist); Next 16 tambien trae el hook experimental `useOffline`.
+
 ## Convenciones (resumen)
 - Datos y secretos: SOLO en servidor (Server Components / Route Handlers / Server Actions). Nunca importar `db/` en `'use client'`.
 - better-sqlite3 es SINCRONO: queries y transacciones sin `await`.

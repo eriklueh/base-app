@@ -6,6 +6,7 @@ import { addNote } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Counter } from "@/components/counter";
+import { PwaManager } from "@/components/pwa";
 
 export default async function Home() {
   const { userId } = await auth(); // async en Clerk Core 3
@@ -62,6 +63,15 @@ export default async function Home() {
               Inicia sesion (boton arriba a la derecha) para crear notas.
             </p>
           )}
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>PWA (instalar + notificaciones push)</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PwaManager />
         </CardContent>
       </Card>
     </div>
