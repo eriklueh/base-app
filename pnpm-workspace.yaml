@@ -1,4 +1,7 @@
-# pnpm 11+ aprueba aqui los build scripts (better-sqlite3 compila un binario nativo).
+# pnpm 11+: decision explicita de build scripts nativos (evita que pnpm install salga con error).
+# better-sqlite3 y unrs-resolver traen binarios prebuilt (N-API/napi-rs) -> NO compilan (false).
+# esbuild solo baja/enlaza su binario en postinstall (sin build tools) -> true.
 allowBuilds:
-  better-sqlite3: true
+  better-sqlite3: false
   esbuild: true
+  unrs-resolver: false
